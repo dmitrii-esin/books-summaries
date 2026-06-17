@@ -12,12 +12,18 @@ export interface Framework {
   id: string;
   title: string;
   author: string;
+  bookReference: {
+    title: string;
+    summary: string;
+  };
   core: string;
   description: string;
   protocol: string;
   diagram: string;
   secondaryDiagram?: string;
   secondaryDiagramTitle?: string;
+  tertiaryDiagram?: string;
+  tertiaryDiagramTitle?: string;
   keyInsights: KeyInsight[];
   examples: Example[];
   stats?: { label: string; value: string }[];
@@ -28,7 +34,11 @@ export const frameworks: Framework[] = [
     id: "sapolsky",
     title: "Determinism – Sapolsky",
     author: "Robert Sapolsky",
-    core: "Behavior is a biological endpoint. Willpower is a myth.",
+    bookReference: {
+      title: "Determined: A Science of Life without Free Will",
+      summary: "Sapolsky argues that our choices, behaviors, and desires are entirely the product of a complex chain of biological and environmental causes stretching back from milliseconds to millennia, dismantling the illusion of free will."
+    },
+    core: "There is no free will. It's biology all the way down.",
     description: "When I read *Determined*, I realized my 'willpower' is just a biological state. Instead of relying on discipline, I now restructure my daily environment to redirect the causal chain before the moment of decision.",
     protocol: "If I feel resistance to a task, I don't force it. I check my biological baseline: Sleep, Glucose, Cortisol (stress). I fix the biology first. I use the 'Upstream Pause' — before judging anyone's behavior (including my own), I ask: what happened one second, one hour, one year before this action?",
     diagram: `graph TD
@@ -57,6 +67,15 @@ export const frameworks: Framework[] = [
     style PFC fill:#7f1d1d,stroke:#ef4444,stroke-width:1px,color:#fff
     style BH fill:#451a03,stroke:#d97706,stroke-width:1px,color:#fff`,
     secondaryDiagramTitle: "The Stress–Brain–Behavior Feedback Loop",
+    tertiaryDiagram: `timeline
+    title The Chain of Determinism
+    Evolution : Millennia prior : Species-wide traits shaped
+    Epigenetics : Decades prior : Childhood environment alters gene expression
+    Neuroplasticity : Months prior : Chronic stress reshapes brain structure
+    Endocrinology : Hours prior : Hormone levels fluctuate
+    Neurobiology : Seconds prior : Sensory triggers activate amygdala
+    Action : Now : Behavior occurs`,
+    tertiaryDiagramTitle: "Causality Timeline",
     keyInsights: [
       { title: "The Domino Metaphor", text: "You are not the person pushing the first domino. You *are* the domino. Each tile represents a prior cause — gene, hormone, childhood event, cultural norm. There is no 'first pusher.'" },
       { title: "The Press Secretary", text: "The frontal cortex doesn't make decisions — it rationalizes decisions already determined by deeper biological processes, then presents them to consciousness as 'choices.'" },
@@ -80,6 +99,10 @@ export const frameworks: Framework[] = [
     id: "taleb",
     title: "Antifragility – Taleb",
     author: "Nassim Nicholas Taleb",
+    bookReference: {
+      title: "Antifragile: Things That Gain from Disorder",
+      summary: "Taleb introduces the concept of 'antifragility'—systems that not only withstand shocks but actively improve because of them. He explains how to structure our lives to benefit from volatility, randomness, and stress."
+    },
     core: "Gain from disorder. The Barbell Strategy.",
     description: "I use Taleb's Barbell Strategy to ensure my cognitive and financial systems don't just survive chaos, but thrive on it. I avoid the 'moderate' middle — it's a trap. The mythological anchor: Damocles (fragile), Phoenix (robust), Hydra (antifragile).",
     protocol: "85% of my time and resources go to ultra-safe stability (routine, savings, deep work). 15% goes to high-volatility, high-upside experiments. I apply Via Negativa daily: I gain more by removing what's harmful than by adding what seems helpful. Cut the downside first.",
@@ -103,6 +126,18 @@ export const frameworks: Framework[] = [
     style R fill:#78350f,stroke:#d97706,stroke-width:1px,color:#fff
     style A fill:#064e3b,stroke:#10b981,stroke-width:1px,color:#fff`,
     secondaryDiagramTitle: "The Antifragility Spectrum",
+    tertiaryDiagram: `graph LR
+    subgraph Quadrants[Risk vs Reward Asymmetry]
+        direction TB
+        Q1["Optionality (Low Downside / High Upside)"]
+        Q2["Fragile (Low Upside / High Downside)"]
+        Q3["Trivial (Low Upside / Low Downside)"]
+        Q4["Robust (Capped Upside / Capped Downside)"]
+    end
+    
+    style Q1 fill:#064e3b,stroke:#10b981,stroke-width:1px,color:#fff
+    style Q2 fill:#7f1d1d,stroke:#ef4444,stroke-width:1px,color:#fff`,
+    tertiaryDiagramTitle: "Asymmetry Quadrant",
     keyInsights: [
       { title: "Via Negativa", text: "Gain more by *removing* what's harmful than by adding what seems helpful. Don't search for the perfect diet — just eliminate processed sugar and junk food. Subtraction > Addition." },
       { title: "Optionality", text: "Position yourself for capped downside and unlimited upside. A VC invests in 10 startups. 9 can fail entirely (capped loss), but 1 unicorn pays for everything (uncapped upside)." },
@@ -121,6 +156,10 @@ export const frameworks: Framework[] = [
     id: "kahneman",
     title: "Thinking, Fast and Slow – Kahneman",
     author: "Daniel Kahneman",
+    bookReference: {
+      title: "Thinking, Fast and Slow",
+      summary: "Kahneman breaks down human thought into two systems: System 1 (fast, intuitive, emotional) and System 2 (slow, deliberate, logical), revealing the pervasive cognitive biases that shape our judgments and decisions."
+    },
     core: "System 1 (Automatic) vs. System 2 (Deliberate).",
     description: "My brain defaults to System 1 to save energy. I now recognize that most of my anxiety comes from System 1 reacting to noise. I use deliberate pauses to force System 2 online. The key insight: the less you know, the easier it is to build a coherent story, and the *more* confident you feel (WYSIATI).",
     protocol: "The 10-10-10 Rule: Before any important decision, I ask — how will I feel about this in 10 minutes? 10 months? 10 years? This forces System 2 to engage temporal perspective-taking and overrides System 1's present-bias. I also run Pre-Mortems: before committing to a plan, I imagine it has already failed spectacularly and ask 'What went wrong?'",
@@ -142,6 +181,21 @@ export const frameworks: Framework[] = [
     style EXP fill:#0c4a6e,stroke:#0ea5e9,stroke-width:1px,color:#fff
     style REM fill:#451a03,stroke:#d97706,stroke-width:1px,color:#fff`,
     secondaryDiagramTitle: "The Two Selves",
+    tertiaryDiagram: `graph TD
+    Stimulus --> S1[System 1: Default Path]
+    S1 --> IR[Intuitive Response: Fast/Automatic]
+    
+    subgraph System_2_Override_Protocol
+        P[Pause: 10-10-10 Rule] --> A[Analyze: Check WYSIATI]
+        A --> R[Reframe: Base Rates]
+    end
+    
+    IR -.->|Trigger Deliberation| P
+    R --> Reasoned[Reasoned Decision: Slow/Effortful]
+    
+    style S1 fill:#7f1d1d,stroke:#ef4444,stroke-width:1px,color:#fff
+    style Reasoned fill:#064e3b,stroke:#10b981,stroke-width:1px,color:#fff`,
+    tertiaryDiagramTitle: "Bias Override Protocol",
     keyInsights: [
       { title: "Anchoring", text: "You over-rely on the first number you see. A jacket marked '$500 → $199' feels like a steal even if it's worth $120. In salary negotiations, the first number spoken shapes the final offer." },
       { title: "WYSIATI", text: "'What You See Is All There Is.' System 1 builds a coherent story from only the information currently available, without considering what's missing. This is the engine behind overconfidence." },
@@ -166,17 +220,20 @@ export const frameworks: Framework[] = [
     id: "csikszentmihalyi",
     title: "Flow – Csikszentmihalyi",
     author: "Mihaly Csikszentmihalyi",
+    bookReference: {
+      title: "Flow: The Psychology of Optimal Experience",
+      summary: "Csikszentmihalyi explores 'flow,' a state of deep absorption and optimal experience where challenge and skill are perfectly matched, leading to profound satisfaction and performance."
+    },
     core: "The optimal state where challenge matches skill.",
     description: "Flow is my ultimate cognitive target. If I'm anxious, the challenge is too high. If I'm bored, my skill is too high. I constantly dial the difficulty up or down to stay in the zone. The sweet spot is approximately 4% beyond my current ability.",
     protocol: "Before starting work, I define a clear goal and an immediate feedback mechanism. I eliminate all notifications, put my phone in another room, and commit to a 15-minute push-through (flow typically emerges after 20-30 minutes). If anxious → break the task smaller. If bored → add constraints or raise difficulty.",
-    diagram: `quadrantChart
-    title My Flow State Calibration
-    x-axis Low Skill --> High Skill
-    y-axis Low Challenge --> High Challenge
-    quadrant-1 Flow State
-    quadrant-2 Anxiety
-    quadrant-3 Apathy
-    quadrant-4 Relaxation`,
+    diagram: `graph TD
+    subgraph FlowState[Calibration]
+        A["Low Skill/Low Challenge: Apathy"]
+        B["High Skill/High Challenge: Flow"]
+        C["High Skill/Low Challenge: Relaxation"]
+        D["Low Skill/High Challenge: Anxiety"]
+    end`,
     secondaryDiagram: `graph TB
     G["Clear Goals"] --> FL["FLOW STATE"]
     F["Immediate Feedback"] --> FL
@@ -209,6 +266,10 @@ export const frameworks: Framework[] = [
     id: "newport",
     title: "Deep Work – Newport",
     author: "Cal Newport",
+    bookReference: {
+      title: "Deep Work: Rules for Focused Success in a Distracted World",
+      summary: "Newport argues that the ability to focus without distraction on a cognitively demanding task is a rare and increasingly valuable skill in the modern economy, providing rules to cultivate this capability."
+    },
     core: "Distraction-free concentration vs. logistical shallow work.",
     description: "I protect my deep work blocks ruthlessly. Context-switching leaves 'attention residue' that destroys cognitive capacity for 23+ minutes. The biological limit is 3-4 hours of deep work per day. I don't aim for 8 hours — I aim for high-intensity, short-duration sprints.",
     protocol: "The 4DX Framework: (1) Focus on the Wildly Important goal, (2) Act on Lead Measures (hours of deep work, not outcomes), (3) Keep a Compelling Scoreboard, (4) Create a Cadence of Accountability. End every day with the Shutdown Ritual: capture loose ends → review tomorrow → close everything → say 'Shutdown complete' out loud.",
@@ -240,6 +301,13 @@ export const frameworks: Framework[] = [
     style C fill:#312e81,stroke:#6366f1,stroke-width:1px,color:#fff
     style L fill:#064e3b,stroke:#10b981,stroke-width:1px,color:#fff`,
     secondaryDiagramTitle: "Time-Blocking Decision Flow",
+    tertiaryDiagram: `graph TD
+    Deep[Deep Work State] --> Switch[Context Switching]
+    Switch --> Shallow[Shallow Work State]
+    Shallow --> Deep
+    
+    style Switch fill:#7f1d1d,stroke:#ef4444,stroke-width:1px,color:#fff`,
+    tertiaryDiagramTitle: "Attention Residue State Machine",
     keyInsights: [
       { title: "Rule 1: Work Deeply", text: "Choose a depth philosophy: Monastic (total isolation), Bimodal (multi-day retreats), Rhythmic (daily habit), or Journalistic (fit into gaps). Most people start with Rhythmic — 90 min every morning." },
       { title: "Rule 2: Embrace Boredom", text: "Don't take breaks from distraction — take breaks from focus. Schedule internet use in defined blocks. Practice Productive Meditation: focus on one problem while walking, 2-3× per week." },
@@ -262,8 +330,12 @@ export const frameworks: Framework[] = [
   },
   {
     id: "oakley",
-    title: "Learning How to Learn – Oakley",
+    title: "A Mind for Numbers – Oakley",
     author: "Barbara Oakley",
+    bookReference: {
+      title: "A Mind for Numbers: How to Excel at Math and Science",
+      summary: "Oakley reveals the cognitive strategies underlying effective learning, focusing on the interplay between focused and diffuse modes of thinking, chunking, and defeating procrastination."
+    },
     core: "Focused mode vs. Diffuse mode.",
     description: "Learning requires oscillating between intense focus and complete relaxation. If I'm stuck, pushing harder doesn't work — I have to step away to activate the Default Mode Network. The pinball metaphor: Focused Mode has bumpers packed tightly (deep analysis). Diffuse Mode has bumpers spread far apart (broad creative connections).",
     protocol: "Pomodoro Protocol: 25 min intense focus → 5 min break → repeat. After 4 cycles, take a 15-30 min break. Focus on PROCESS not PRODUCT ('I'll work for 25 minutes' not 'I'll finish this chapter'). Before bed, do a light review to leverage sleep-based memory consolidation via the glymphatic system.",
@@ -292,6 +364,20 @@ export const frameworks: Framework[] = [
     style R fill:#065f46,stroke:#10b981,stroke-width:1px,color:#fff
     style SL fill:#0c4a6e,stroke:#0ea5e9,stroke-width:1px,color:#fff`,
     secondaryDiagramTitle: "The Complete Learning Cycle",
+    tertiaryDiagram: `graph LR
+    A[Learn] --> B{Wait 1 Day}
+    B --> C[Recall / Self-Test]
+    C --> D{Wait 3 Days}
+    D --> E[Recall / Self-Test]
+    E --> F{Wait 7 Days}
+    F --> G[Recall / Self-Test]
+    G --> H[Long-Term Memory]
+    
+    style H fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#fff
+    style C fill:#451a03,stroke:#d97706,stroke-width:1px,color:#fff
+    style E fill:#451a03,stroke:#d97706,stroke-width:1px,color:#fff
+    style G fill:#451a03,stroke:#d97706,stroke-width:1px,color:#fff`,
+    tertiaryDiagramTitle: "Spaced Repetition Protocol",
     keyInsights: [
       { title: "Chunking", text: "Group information into compact meaningful units that occupy less working memory. Working memory holds ~4 chunks. Well-formed chunks compress multiple pieces into one slot, like file compression." },
       { title: "Spaced Repetition", text: "Review at increasing intervals: 1 day → 3 days → 7 → 14 → 30. Fights the Ebbinghaus forgetting curve — we forget ~70% within 24 hours without review. 20 min across 4 days beats 80 min in one sitting." },

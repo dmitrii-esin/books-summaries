@@ -4,8 +4,13 @@
   --background: #0a0a0a;
   --foreground: #e5e7eb;
   --accent: #10b981;
+  --accent-secondary: #6366f1;
   --surface: #111111;
+  --surface-raised: #161616;
   --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --glow-emerald: rgba(16, 185, 129, 0.08);
+  --glow-indigo: rgba(99, 102, 241, 0.08);
 }
 
 @theme inline {
@@ -85,6 +90,107 @@ section {
   scroll-margin-top: 2rem;
 }
 
+/* ─── Stat card glow on hover ─── */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, var(--glow-emerald), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-card:hover {
+  border-color: var(--border-hover);
+}
+
+/* ─── Insight card accent border ─── */
+.insight-card {
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.insight-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* ─── Example card numbering glow ─── */
+.example-card {
+  transition: transform 0.2s ease, border-color 0.3s ease;
+}
+
+.example-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* ─── Reading progress indicator ─── */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #10b981, #6366f1);
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+
+/* ─── Diagram container ambient glow ─── */
+.diagram-container {
+  position: relative;
+}
+
+.diagram-container::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.06), transparent 40%, rgba(99, 102, 241, 0.06));
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.diagram-container:hover::after {
+  opacity: 1;
+}
+
+/* ─── Blockquote styling ─── */
+blockquote {
+  border-left: 2px solid rgba(16, 185, 129, 0.4);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: #9ca3af;
+}
+
+/* ─── Keyboard shortcut hint ─── */
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.125rem 0.375rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  line-height: 1;
+  color: #6b7280;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+
 /* ─── Subtle fade-in for protocol cards ─── */
 @keyframes fadeInUp {
   from {
@@ -99,4 +205,14 @@ section {
 
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out both;
+}
+
+/* ─── Pulse animation for active indicator ─── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  50% { box-shadow: 0 0 0 4px rgba(16, 185, 129, 0); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }
