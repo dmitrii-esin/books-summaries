@@ -9,7 +9,7 @@ import InsightCard from '@/components/InsightCard';
 import ExampleCard from '@/components/ExampleCard';
 import { frameworks, unifiedSystem } from '@/data/frameworks';
 import ReactMarkdown from 'react-markdown';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 
 // Per-framework accent colors for consistent theming
 const frameworkColors: Record<string, string> = {
@@ -21,9 +21,9 @@ const frameworkColors: Record<string, string> = {
   oakley: '#d946ef',
 };
 
-const sectionVariants = {
+const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const } }
 };
 
 export default function Home() {
