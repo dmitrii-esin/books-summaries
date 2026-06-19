@@ -31,7 +31,7 @@ export default function FrameworkHeader({ id, title, author, bookReference, core
   const color = frameworkColors[id] || '#10b981';
 
   return (
-    <header className="mb-14 max-w-3xl">
+    <header className="mb-8 sm:mb-10 md:mb-14 max-w-3xl w-full">
       <div className="flex flex-wrap items-center gap-3 mb-6">
         {/* Author tag */}
         <motion.div
@@ -57,7 +57,7 @@ export default function FrameworkHeader({ id, title, author, bookReference, core
             <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
-            <span className="text-[11px] font-serif italic text-gray-400">{bookReference.title}</span>
+            <span className="text-[11px] font-mono uppercase tracking-wider text-gray-400 truncate max-w-[12rem] sm:max-w-none">{bookReference.title}</span>
           </motion.div>
         )}
       </div>
@@ -78,13 +78,13 @@ export default function FrameworkHeader({ id, title, author, bookReference, core
       )}
 
       {/* Title */}
-      <h2 className="text-3xl lg:text-4xl font-semibold tracking-tight text-white mb-4">
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-white mb-3 sm:mb-4 text-balance">
         {title}
       </h2>
 
       {/* Core thesis — highlighted */}
       <div
-        className="text-sm font-mono mb-6 uppercase tracking-wider px-3 py-2 rounded-lg border inline-block"
+        className="text-xs sm:text-sm font-mono mb-4 sm:mb-6 uppercase tracking-wider px-3 py-2 rounded-lg border inline-block max-w-full break-words"
         style={{
           color: color,
           borderColor: `${color}30`,
@@ -95,7 +95,7 @@ export default function FrameworkHeader({ id, title, author, bookReference, core
       </div>
 
       {/* Description blockquote */}
-      <div className="text-lg text-gray-300 leading-relaxed mb-8 border-l-2 pl-6 py-1" style={{ borderColor: `${color}40` }}>
+      <div className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6 sm:mb-8 border-l-2 pl-4 sm:pl-6 py-1 max-w-[65ch]" style={{ borderColor: `${color}40` }}>
         <ReactMarkdown
           components={{
             em: ({ ...props }) => <em className="text-gray-200 font-medium" {...props} />,
@@ -108,7 +108,7 @@ export default function FrameworkHeader({ id, title, author, bookReference, core
       {/* Protocol card */}
       {protocol && (
         <motion.div
-          className="mt-8 border rounded-xl p-6 lg:p-8 backdrop-blur-md"
+          className="mt-6 sm:mt-8 border rounded-xl p-4 sm:p-6 lg:p-8 backdrop-blur-md"
           style={{
             backgroundColor: `${color}04`,
             borderColor: `${color}18`,
@@ -124,7 +124,7 @@ export default function FrameworkHeader({ id, title, author, bookReference, core
             </svg>
             My Protocol
           </h3>
-          <p className="text-gray-200 font-mono text-sm leading-relaxed whitespace-pre-wrap">
+          <p className="text-gray-200 font-mono text-xs sm:text-sm leading-relaxed whitespace-pre-wrap break-words">
             {protocol}
           </p>
         </motion.div>

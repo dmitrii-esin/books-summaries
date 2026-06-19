@@ -6,7 +6,7 @@ export default function ReadingProgress() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const scrollContainer = document.querySelector('main > div');
+    const scrollContainer = document.querySelector('[data-scroll-container]');
     if (!scrollContainer) return;
 
     const handleScroll = () => {
@@ -23,7 +23,7 @@ export default function ReadingProgress() {
 
   return (
     <div
-      className="reading-progress"
+      className="reading-progress top-14 lg:top-0"
       style={{ width: `${progress}%` }}
       role="progressbar"
       aria-valuenow={Math.round(progress)}

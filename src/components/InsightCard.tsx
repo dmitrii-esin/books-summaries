@@ -20,7 +20,7 @@ export default function InsightCard({ title, text, index, accentColor = '#10b981
 
   return (
     <motion.div
-      className="insight-card bg-white/[0.02] border border-white/[0.06] rounded-xl p-6 cursor-pointer"
+      className="insight-card bg-white/[0.02] border border-white/[0.06] rounded-xl p-4 sm:p-6 cursor-pointer"
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -33,7 +33,7 @@ export default function InsightCard({ title, text, index, accentColor = '#10b981
           style={{ backgroundColor: accentColor, opacity: 0.6 }}
         />
         <div className="flex-1 min-w-0">
-          <h4 className="text-white font-medium text-base mb-2">{title}</h4>
+          <h4 className="text-white font-medium text-sm sm:text-base mb-1.5 sm:mb-2 break-words">{title}</h4>
           <AnimatePresence mode="wait">
             <motion.div
               key={isExpanded ? 'expanded' : 'collapsed'}

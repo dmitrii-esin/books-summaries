@@ -13,14 +13,14 @@ interface StatCardProps {
 export default function StatCard({ value, label, accentColor = '#10b981', index }: StatCardProps) {
   return (
     <motion.div
-      className="stat-card border border-white/[0.06] rounded-xl p-5 text-center relative z-10"
+      className="stat-card border border-white/[0.06] rounded-xl p-4 sm:p-5 text-center relative z-10"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
     >
       <div
-        className="text-2xl font-semibold mb-1.5 font-mono tracking-tight"
+        className="text-xl sm:text-2xl font-semibold mb-1 sm:mb-1.5 font-mono tracking-tight break-words"
         style={{ color: accentColor }}
       >
         {value}

@@ -22,7 +22,7 @@ export default function ExampleCard({ name, detail, index, accentColor = '#6366f
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       onClick={() => setIsOpen(!isOpen)}
     >
-      <div className="p-5">
+      <div className="p-4 sm:p-5">
         <div className="flex items-start gap-3">
           <span
             className="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center font-mono text-[10px] mt-0.5 border"
@@ -36,7 +36,7 @@ export default function ExampleCard({ name, detail, index, accentColor = '#6366f
           </span>
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between">
-              <h4 className="text-white font-medium text-sm">{name}</h4>
+              <h4 className="text-white font-medium text-sm break-words pr-2">{name}</h4>
               <motion.span
                 className="text-gray-600 text-xs ml-2 flex-shrink-0"
                 animate={{ rotate: isOpen ? 180 : 0 }}
@@ -58,8 +58,8 @@ export default function ExampleCard({ name, detail, index, accentColor = '#6366f
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="px-5 pb-5 pt-0 pl-14">
-              <p className="text-gray-400 text-xs leading-relaxed">{detail}</p>
+            <div className="px-4 sm:px-5 pb-4 sm:pb-5 pt-0 pl-11 sm:pl-14">
+              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed break-words">{detail}</p>
             </div>
           </motion.div>
         )}

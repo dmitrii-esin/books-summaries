@@ -28,6 +28,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -36,6 +38,16 @@ body {
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Safe area insets for notched mobile devices */
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* ─── Selection ─── */
@@ -60,9 +72,15 @@ body {
 }
 
 /* ─── Mermaid Overrides ─── */
-.mermaid-container svg {
+.mermaid-container {
   max-width: 100%;
+}
+
+.mermaid-container svg {
+  display: block;
+  max-width: none;
   height: auto;
+  min-width: min(100%, 280px);
 }
 
 .mermaid-container .node rect,
@@ -80,6 +98,22 @@ body {
   font-size: 13px !important;
 }
 
+@media (max-width: 1023px) {
+  .mermaid-container text {
+    font-size: 11px !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .mermaid-container text {
+    font-size: 9px !important;
+  }
+
+  .mermaid-container .edgePath .path {
+    stroke-width: 1px;
+  }
+}
+
 /* ─── Typography refinements ─── */
 .font-serif {
   font-family: Georgia, 'Times New Roman', serif;
@@ -87,7 +121,13 @@ body {
 
 /* ─── Smooth section transitions ─── */
 section {
-  scroll-margin-top: 2rem;
+  scroll-margin-top: 4.5rem;
+}
+
+@media (min-width: 1024px) {
+  section {
+    scroll-margin-top: 2rem;
+  }
 }
 
 /* ─── Stat card glow on hover ─── */
@@ -215,4 +255,20 @@ kbd {
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Hide horizontal scrollbar in mobile nav while keeping scroll */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Prevent long words from breaking layout */
+.prose-balance {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
